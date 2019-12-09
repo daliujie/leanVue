@@ -1,0 +1,8 @@
+#bookTable th{
+	background: #ccc;
+}
+#bookTable tr td{
+	width: 200px;
+	height: 30px;
+	text-align: center;
+}

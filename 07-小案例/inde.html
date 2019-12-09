@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="mian.css" />
+	</head>
+	<body>
+		<div id="bookTable">
+			<table cellspacing="0" cellpadding="0" border="1px solid #ccc">
+				<thead>
+					<tr>
+						<th>序号</th>
+						<th>书名</th>
+						<th>单价</th>
+						<th>操作</th>
+						<th>价格</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr v-for="(book,index) in books">
+						<td>{{index}}</td>
+						<td>{{book.name}}</td>
+						<td>{{book.price | tofixPrice}}</td>
+						<td>
+							<button @click="subBuyNum(book)"
+									:disabled="book.num == 1">-</button>
+							{{book.num}}
+							<button @click="addBuyNum(book)">+</button>
+						</td>
+						<td>{{book.price * book.num | tofixPrice}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<h2>总价格是：{{totalPrice | tofixPrice}}</h2>
+		</div>
+	</body>
+	<script type="text/javascript" src="../js/vue.js" ></script>
+	<script type="text/javascript" src="index.js" ></script>
+</html>
