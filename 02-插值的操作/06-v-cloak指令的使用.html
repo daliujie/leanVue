@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script>
+        /**
+         * v-cloak  斗篷  可以做到防抖动，防止页面在渲染的时候由于其他原因引起的闪烁
+         * 
+         * 在VUE解析之前，div有一个属性v-cloak
+         * 在VUE解析之后，div中没有一个属性v-cloak
+         */
+    </script>
+    <style>
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+           <h2  v-cloak>{{message}}</h2> 
+           <h2 v-pre>{{message}}</h2> 
+    </div>
+    <script>
+       setTimeout(function(){
+        const app = new Vue({
+            el:"#app",
+            data:{
+                message: "你好！大杰哥"
+            }
+        })
+       },1000)
+    </script>
+</body>
+</html>

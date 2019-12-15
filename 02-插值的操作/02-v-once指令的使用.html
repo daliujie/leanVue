@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script>
+        /**
+         * v-once  见名知意，就是只绑定一次元素，后面不需要跟着表达式
+         *         初始化过后，数据如果发生变化，页面显示的东西不会随着变动
+         *         可以通过浏览器的console来测试
+         * 
+         */
+    </script>
+</head>
+<body>
+    <div id="app" >
+           <h2>{{message}}</h2> 
+           <h2 v-once>{{message}}</h2> 
+    </div>
+    <script>
+        const app = new Vue({
+            el:"#app",
+            data:{
+                message: "你好，大杰哥"
+            }
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script>
+        /**
+         * v-text  绑定的内容会成为文本显示在页面上
+         *   灵活性不够，会直接覆盖标签体内部的内容
+         *   但是一般不用，一般使用Mustache语法直接代替
+         */
+    </script>
+</head>
+<body>
+    <div id="app" >
+           <h2>{{message}} 大杰哥</h2> 
+           <h2 v-text="message">大杰哥</h2> 
+    </div>
+    <script>
+        const app = new Vue({
+            el:"#app",
+            data:{
+                message: "你好！"
+            }
+        })
+    </script>
+</body>
+</html>

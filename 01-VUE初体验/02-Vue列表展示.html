@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app1">
+        <label for="">常见的水果有：</label>
+        <ul>
+            <li v-for="fruit in fruits">{{fruit}}</li>
+        </ul>
+    </div>
+    <script>
+        const app = new Vue({
+            el: "#app1",
+            data: {
+                fruits: ["苹果","香蕉","葡萄","橘子","猕猴桃"]
+            }
+        })
+    </script>
+</body>
+</html>

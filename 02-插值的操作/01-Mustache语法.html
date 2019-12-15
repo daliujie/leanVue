@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<script>
+/**
+ * Mustache语法   其实就是{{}}，
+ * 类似于可以直接将VUE组件中定义的数据直接暂时，括号中间为变量名
+ * 语法中不仅仅可以写变量，还可以写一些简单的表达式 如： +/-/*
+ * 
+ * */
+</script>
+
+
+<body>
+    <div id="app">
+        <div>
+            <label>这是基本的表达式:</label>{{num1}}
+        </div>
+        <div>
+            <label>这是基本的加法表达式:</label>{{num1+num2}}
+        </div>
+        <div>
+            <label>这是基本的减法表达式:</label>{{num1-num2}}
+        </div>
+        <div>
+            <label>这是基本的乘法表达式:</label>{{num1*num2}}
+        </div>
+        <div>
+            <label>这是基本的除法表达式:</label>{{num1/num2}}
+        </div>
+    </div>
+    
+</body>
+
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+                num1: 100,
+                num2: 50
+            }
+        })
+    </script>
+</html>
