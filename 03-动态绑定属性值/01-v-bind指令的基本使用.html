@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <script>
+        /**
+         *v-bind 用于绑定一个或多个属性值，或者向另一个组件传递props值
+         *  开发中一般用来绑定元素的属性值，如：img的src，a标签的href等
+            v-bind 不可以使用{{}}语法
+            语法糖：可以使用“：”来代替v-bind
+         */
+    </script>
+ 
+</head>
+<body>
+    <div id="app">
+           <img v-bind:src="imgURL" />
+            <!-- 语法糖写法 -->
+           <a :href="aHref">我是百度</a>
+    </div>
+    <script>
+       setTimeout(function(){
+        const app = new Vue({
+            el:"#app",
+            data:{
+                message: "你好！大杰哥",
+                imgURL: '../img/car.jpg',
+                aHref: "http://baidu.com"
+            }
+        })
+       },1000)
+    </script>
+</body>
+</html>

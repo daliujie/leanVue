@@ -1,0 +1,70 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>v-bind的对象语法</title>
+        <script src="../js/vue.js"></script>
+        <script>
+        /*
+            v-bind 可以动态的绑定属性值，class也是一个属性，所以也可以绑定class、
+            v-bind绑定的可以是字面值，
+                也可以是对象key:value形式  value为boolean类型，用来控制是否添加这个类
+                可以通过变量值来控制类
+            会合并元素的class属性，不会覆盖
+
+        */
+
+        </script>
+    </head>
+    <style>
+        .active{
+            color: red;    
+        }
+        .bg{
+            background-color: yellow;
+        }
+    </style>
+    <body>
+        <div id="app">
+            <!-- 用法一、直接绑定一个类，但是看起来好像没有多大意义 -->
+            <h2 :class="active">{{message}}</h2>
+
+            <!-- 用法二、使用对象语法，类名：是否展示，来判断类是否存在 -->
+            <!-- <h2 :class={className1:isShow1,className2:isShow2...}>{{message}}</h2> -->
+            <h2 :class={active:isActive,bg:isBg}>{{message}}</h2>
+
+            <button @click="changeColor">点击变换颜色</button>
+            
+            <!-- 用法三、和普通的类存在并不会冲突 -->
+            <h2 class="bg" :class="active">{{message}}</h2>
+
+            <!-- 用法四、如果过于复杂，可以放在一个methods里面或者computed中，classes是一个计算属性 -->
+            <!-- 这是v-bind对象语法的方法写法，这样会更加精简 -->
+            <h2 :class=getClass()>{{message}}</h2>
+            
+        </div>
+        <script>
+            const app = new Vue({
+                el: "#app",
+                data: {
+                    message: "你好！大杰哥",
+                    active: "active",
+                    isActive: true,
+                    isBg: false
+                },
+                methods: {
+                    changeColor(){
+                        this.isActive = !this.isActive;
+                    },
+                    getClass(){
+                        return {active:this.isActive,bg:this.isBg}
+                    }
+
+
+                }
+            })
+        </script>
+    </body>
+    </html>

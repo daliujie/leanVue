@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- v-on 主要用来绑定事件 如:click,input等
+        语法糖：可以使用@来代替    
+    -->
+
+    <div id='app1'>
+        <h2>{{counter}}</h2>
+        <button v-on:click="descrement">-</button>
+        <button @click="increment">+</button>
+    </div>
+    
+    <script src='../js/vue.js'></script>
+    <script>
+        const app = new Vue({
+            el: '#app1',
+            data: {
+                message: 'Vue.js   你好！',
+                counter: 0
+            },
+            methods: {
+                increment(){
+                    this.counter ++
+                },
+                descrement(){
+                    this.counter -- 
+                }
+            }
+        });
+    </script>
+</body>
+</html>

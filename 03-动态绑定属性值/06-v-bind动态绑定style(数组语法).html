@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- v-bind 动态绑定样式的数组语法 用的很少，基本不用-->
+</head>
+<body>
+    <div id='app1'>
+        <h2 :style="[baseColor,baseSize]">{{message}}</h2>
+    </div>
+    
+    <script src='../js/vue.js'></script>
+    <script>
+        const app = new Vue({
+            el: '#app1',
+            data: {
+                message: 'Vue.js   你好！',
+                baseColor: {color: "red"},
+                baseSize: {fontSize: "50px"},//不能写成fong-size
+            }
+        });
+    </script>
+</body>
+</html>

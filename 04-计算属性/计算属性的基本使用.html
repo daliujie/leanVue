@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!--
+        计算属性 主要用来用作属性的计算
+        使用一个变量来代替需要计算的结果
+            计算属性里面的属性名不能和data里面的重复  不影响显示，但是会有错误
+            计算属性里面的属性名不能个methods里面的方法名重复，不会出错，影响显示
+            虽然使用method也可以实现相同的功能，但是效率会比方法高很多
+                因为使用method会调用一次执行一次，使用计算属性的话会使用缓存
+       -->
+</head>
+<body>
+    <div id='app1'>
+        <h2>{{message + userName}}</h2>
+        <h2>{{sayHello()}}</h2>
+        <h2>{{sayHello}}</h2>
+        
+    </div>
+
+    
+    <script src='../js/vue.js'></script>
+    <script>
+        const app = new Vue({
+            el: '#app1',
+            data: {
+                message: '你好！！',
+                userName: "大杰哥"
+            },
+            methods: {
+                sayHello(){
+                    return this.userName + '1111111';
+                    console.log('method被调用')
+                }
+            },
+            computed: {
+                sayHello(){
+                    return this.message + this.userName
+                    console.log('computed被调用')
+                }
+               
+            }
+        });
+
+    </script>
+
+</body>
+</html>

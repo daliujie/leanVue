@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width= , initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .active{
+            color: red;    
+        }
+        .bg{
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 用法一:直接绑定字面量-->
+        <h2 v-bind:class="['active','bg']">{{message  + 1}}</h2>
+        
+        <!-- 用法二：绑定变量 -->
+        <h2 v-bind:class="[active,bg]">{{message + 2}}</h2>
+        <h2 v-bind:class="classArr">{{message+3}}</h2>
+        
+        <!-- 用法三：绑定方法 -->
+        <h2 v-bind:class="getClassArr()">{{message}}</h2>
+
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: "#app",
+            data: {
+                message: "你好啊！！！大杰哥",
+                active: 'active',
+                bg: 'bg',
+                classArr: ['bg','active']
+            },
+            methods: {
+                getClassArr(){
+                    return [this.bg,this.active]
+                }
+            }
+        })
+    </script>
+</body>
+</html>

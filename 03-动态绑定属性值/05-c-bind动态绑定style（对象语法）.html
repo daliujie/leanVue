@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 
+        使用c-bind 绑定元素的style  对象写法
+        和绑定class有些不同，之前的value是boolean值，现在的可以是css属性名，value是属性值
+
+        类似于font-size这种可以使用fontSize驼峰标识代替
+     -->
+</head>
+<body>
+    <div id='app1'>
+       <!-- 用法一 绑定固定值 -->
+        <!-- <h2 v-bind:style={key css属性名:value 属性值}>{{message}}</h2> -->
+        <h2 v-bind:style={color:'red',fontSize:'50px'}>{{message}}</h2>
+
+        <!-- 用法二:绑定属性值 -->
+        <h2 v-bind:style={fontSize:fontSize}>{{message}}</h2>    
+    </div>
+    
+
+    <script src='../js/vue.js'></script>
+    <script>
+        const app = new Vue({
+            el: '#app1',
+            data: {
+                message: 'Vue.js   你好！',
+                fontSize: '50px',
+            }
+        });
+    </script>
+    
+</body>
+</html>
