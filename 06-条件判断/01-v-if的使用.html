@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        /* 防止页面闪烁 */
+        [v-cloak]{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id='app'>
+
+            <h2 v-if="true">你好a!</h2>
+            <h2 v-if="false" v-cloak>akjshdkj</h2>
+            <h2>你的分数是:{{score}}</h2>
+            <h2>等级是;
+                <span v-if="score > 90">优秀</span>
+                <span v-else-if="score > 80">良好</span>
+                <span v-else-if="score > 60">及格</span>
+                <span v-else>不及格</span>
+            </h2>
+    </div>
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                score: 80
+            }
+        })
+    </script>
+</body>
+</html>

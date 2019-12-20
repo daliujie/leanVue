@@ -27,6 +27,7 @@
 									:disabled="book.num == 1">-</button>
 							{{book.num}}
 							<button @click="addBuyNum(book)">+</button>
+							<button @click="removeBook(index)">移除</button>
 						</td>
 						<td>{{book.price * book.num | tofixPrice}}</td>
 					</tr>
@@ -35,6 +36,6 @@
 			<h2>总价格是：{{totalPrice | tofixPrice}}</h2>
 		</div>
 	</body>
-	<script type="text/javascript" src="../js/vue.js" ></script>
+	<script type="text/javascript" src="../../js/vue.js" ></script>
 	<script type="text/javascript" src="index.js" ></script>
 </html>

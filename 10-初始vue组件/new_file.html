@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script type="text/javascript" src="../js/vue.js" ></script>
+	</head>
+	<body>
+		
+		  <div id="father">
+		    <label for="msg">
+		      在下面输入框中输入内容可以改变爸爸的 message：
+		    </label> <br>
+		    <input id="msg" type="text" v-model="message">
+		    <hr>
+		    <child v-bind:msg= "message" class="child"> 
+		    <!-- 通过 v-bind 动态赋值 -->
+		    </child>
+		  </div>
+		   
+		  <script>
+		    let child = {
+		      template: `<div>
+		      <p>下面是来自爸爸的信息:</p>
+		      <p>{{ msg }}</p>
+		    </div>`,
+		      props: {
+		      	msg: {
+		      		type: String,
+		      		default: ""
+		      	}
+		      }
+		    }
+		    
+		    let father = new Vue({
+		      el:'#father',
+		      components: { child }, // 注册子组件
+		      data: {
+		        message: 'message from father'
+		      }
+		    })
+		  </script>
+	</body>
+</html>

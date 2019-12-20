@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        官方推荐使用v-for的时候也加上一个key，可以更好地复用相同的元素
+     -->
+    <div id='app'>
+        <!-- 遍历数组 基本-->
+        <ul>
+            <li v-for="name in names">{{name}}</li>
+        </ul>
+
+         <!-- 遍历数组 并获取下标值-->
+        <ul>
+            <li v-for="(name,index) in names">
+                <label for="">{{index}}.</label>
+                <label for="">{{name}}</label>
+            </li>
+        </ul>
+
+        
+        <!-- 遍历对象 如果只有一个的时候拿到的是value-->
+        <ul>
+            <li v-for="item in book">{{item}}</li>
+        </ul>
+
+        <!-- 遍历对象 可以传多个参数，前面是value，后面是key-->
+        <ul>
+            <li v-for="(value,key) in book">{{key+' '+value}}</li>
+        </ul>
+
+        <!-- 遍历对象 可以传多个参数，前面是value，后面是key,最后一个是index-->
+        <ul>
+            <li v-for="(value,key,index) in book">{{key+' '+value+' ' +index}}</li>
+        </ul>
+    </div>
+
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                names: ["Jerry","Tom","Jack","Harry","dajiege"],
+                book:{
+                    name: "数据结构",
+                    price: "500",
+                    auth: "佚名"
+                }
+            },
+            methods: {
+    
+            }
+        })
+    </script>
+
+</body>
+</html>

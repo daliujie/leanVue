@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        官方推荐使用v-for的时候也加上一个key，可以更好地复用相同的元素
+        这样的话当需要添加相同元素的时候可以节约很多资源
+
+        当进行插入或删除的时候会先使用key和元素绑定，不会依次移动后面的元素
+     -->
+    <div id='app'>
+        <!-- 遍历数组 基本-->
+        <ul>
+            <li v-for="(name,index) in names" :key="name">{{index +name}}</li>
+        </ul>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                names: ["A","B","C","D","E"]
+            },
+            methods: {
+    
+            }
+        })
+    </script>
+
+</body>
+</html>

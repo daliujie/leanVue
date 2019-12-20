@@ -37,6 +37,10 @@ const app = new Vue({
 		},
 		subBuyNum:function(book){
 			book.num -- ;
+		},
+		removeBook(index){
+			console.log(index)
+			this.books.splice(index,1)
 		}
 	},
 	filters:{//定义过滤器，可以格式化

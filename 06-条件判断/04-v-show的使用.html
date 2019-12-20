@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id='app'>
+        <!-- 
+            v-show: 当条件为false时，包含v-show的元素只会增加一个属性display：none
+         -->
+        <div v-show="idShow">
+            <label for="username">账号登录：</label>
+            <input type="text" placeholder="请输入登录账号" name="" id="aaa" />
+        </div>
+        <!--  
+            v-if：当条件为false时，会将元素直接移除掉，在页面检查中找不到改元素
+         -->
+        <div v-if="idShow">
+            <label for="username">账号登录：</label>
+            <input type="text" placeholder="请输入登录账号" name="" id="bbb" />
+        </div>
+
+         <button @click="changeLoginType()">s切换</button>
+
+        <!-- 一般经常切换时，使用v-show效率会更高，因为他不移除元素 -->
+    </div>
+
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: '你好啊！！！',
+                idShow: true
+            },
+            methods: {
+                changeLoginType(){
+                    this.idShow = !this.idShow
+                }
+            }
+        })
+    </script>
+</body>
+</html>

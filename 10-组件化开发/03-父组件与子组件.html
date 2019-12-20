@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    
+    
+<div id="app">
+    <!-- 使用组件  只需要使用父组件，里面的子组件会自己嵌套显示 -->
+    <cpn2></cpn2>
+
+
+    <!-- 不能够越级使用组件 -->
+    <!-- <cpn1></cpn1> -->
+</div>
+
+
+<script>    
+   //创建第一个组件 子组件必须写在父组件之前
+   const cpnC1 = Vue.extend({
+        template: `<div>
+                <h2>我是子组件1</h2>
+                <P>我是内容2</p>
+            </div>`
+   })
+
+   const cpnC2 = Vue.extend({
+        template: `<div>
+                <h2>我是子组件2</h2>
+                <P>我是内容11</p>
+                <P>我是内容21</p>
+                <cpn1></cpn1>
+            </div>`,
+        components:{//给组件祖册子组件
+            cpn1: cpnC1
+        }
+   })
+
+    //全局注册组件
+    // Vue.component('my-cpn1',cpn1);
+    // Vue.component('my-cpn2',cpn2);
+
+    const app = new Vue({
+        el: "#app",
+        components: {//注册局部组件
+            cpn2: cpnC2
+        }
+    })
+
+</script>
+</body>
+</html>

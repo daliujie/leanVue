@@ -5,8 +5,95 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style type="text/css">
+    	.outer{
+    		width: 200px;
+    		height: 200px;
+    		background: red;
+    		text-align: center;
+    	}
+    	.inner{
+    		width: 100px;
+    		height: 100px;
+    		background: yellow;
+    		text-align: center;
+    		margin: auto;
+    	}
+    	button{
+    		margin: auto;
+    	}
+    </style>
+    <script type="text/javascript">
+    	/**
+    	 * v-on的修饰符分为两种
+    	 * 		常用的v-on的事件修饰符
+    	 * 		。stop  阻止事件冒泡
+				.self  当事件在该元素本身触发时才触发事件
+				
+				.capture 添加事件侦听器是，使用事件捕获模式
+				
+				.prevent  阻止默认事件
+				
+				.once 事件只触发一次
+    	 */
+    	/*
+    	 * 按键别名：
+			    .enter
+			    .tab
+			    .delete (捕获 "删除" 和 "退格" 键)
+			    .esc
+			    .space
+			    .up
+			    .down
+			    .left
+			    .right
+			    .ctrl
+			    .alt
+			    .shift
+			    .meta  在Windows系统键盘上meta对应windows徽标键(⊞)
+    	 */
+    	
+    	/*
+    	 * 多个修饰符可以串联使用
+    	 */
+    </script>
 </head>
 <body>
-    
+    <div id="app">
+    	<div class="outer" @click="outerClick">
+    		<div class="inner" @click.self="innerClick">
+    			<button @click.stop.once="btnClick">
+    				按钮
+    			</button>
+    			<a @click.prevent href="http://www.baidu.com">这是超链接</a>
+    			<!--监听enter事件-->
+    			<input v-model="message" type="text" @keyup.enter="inputIn()" />
+    		</div>
+    	</div>
+    </div>
+   	<script type="text/javascript" src="../js/vue.js" ></script>
+   	<script type="text/javascript">
+   		let app = new Vue({
+   			el: "#app",
+   			data: {
+   				message: "dajiege"
+   			},
+   			methods: {
+   				outerClick(){
+   					console.log("外部容器被点击")
+   				},
+   				innerClick(){
+   					console.log("内部容器被点击")
+   				},
+   				btnClick(){
+   					console.log("按钮被点击")
+   				},
+   				inputIn(){
+   					console.log(this.message)
+   				}
+   				
+   			}
+   		})
+   	</script>
 </body>
 </html>

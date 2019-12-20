@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        ul li{
+            width: 50px;
+        }
+        .active{
+            color: #fff;
+            background: #126ac6;
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        作业要求;
+            实现一个列表，默认第一项有样式，以后就是点击项有样式
+     -->
+     <div id='app'>
+        <ul>
+            <li v-for="(value,index) in colors" @click="liClick(index)" :class="index == hasActive ? 'active' : ''" >{{value}}</li>
+        </ul>
+
+     </div>
+
+     <script src="../js/vue.js"></script>
+     <script>
+         const app = new Vue({
+             el: '#app',
+             data: {
+                colors:['yellow','blue','red','yellowred','green','blank'],
+                hasActive:0
+             },
+             methods: {
+                liClick(index){
+                    this.hasActive = index
+                }
+             }
+         })
+     </script>
+</body>
+</html>

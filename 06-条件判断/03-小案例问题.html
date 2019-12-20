@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        输入框会发生复用BUG，切换之后输入的信息还在
+            和VUE的底层有关
+            vue在进行渲染是，会尽可能的复用内存中已经存在的组件，使用虚拟dom替换
+
+        如何避免？
+            可以给不复用的元素加上key属性
+     -->
+    <div id='app'>
+        <span v-if="isUsernameLogin">
+            <label for="username">账号登录：</label>
+            <input type="text" placeholder="请输入登录账号" name="" key="name" id="username" />
+        </span>
+        <span v-else>
+            <label for="useremail">邮箱登录：</label>
+            <input type="text" placeholder="请输入邮箱账号" name="" key="email" id="useremail" />
+        </span>   
+
+            <button @click="changeLoginType()">切换类型</button>
+
+    </div>
+
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: '你好啊！！！',
+                isUsernameLogin: true
+            },
+            methods: {
+                changeLoginType(){
+                    this.isUsernameLogin = !this.isUsernameLogin
+                }
+            }
+        })
+    </script>
+</body>
+</html>

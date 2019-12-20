@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    
+    <div id='app'>
+
+        <cpn1></cpn1>
+        <cpn2></cpn2>
+
+    </div>
+        
+    <script>
+        //全局组件注册的语法糖  可以直接省略构造器部分代码
+        Vue.component('cpn1',{
+            template: `
+                <div>
+                    <h2>我是子组件1</h2>
+                    <P>我是内容1</p>
+                    <P>我是内容2</p>
+                </div>
+            `
+        })
+
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: '你好啊！！！'
+            },
+            methods: {
+    
+            },
+            components: {//注册局部组件的语法糖写法
+                cpn2: {
+                    template: `
+                    <div>
+                        <h2>我是子组件2</h2>
+                        <P>我是内容12</p>
+                        <P>我是内容22</p>
+                    </div>
+                    `
+                }
+            }
+        })
+    </script>
+
+</body>
+</html>

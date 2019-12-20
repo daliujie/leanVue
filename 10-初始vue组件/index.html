@@ -6,7 +6,18 @@
 		
 	</head>
 	<body>
-		<input id="testinput" />
+		<div id="app">
+			<cpn @increment="increment"  @descrement="descrement" v-bind:counter="counter"></cpn>
+		</div>
+		
+		<script id="myCpn" type="text/template">
+			<div>
+				<button @click="descrement">-</button>
+				<span>{{counter}}</span>
+				<button @click="increment">+</button>
+			</div>
+		</script>
+		
 		
 		<script type="text/javascript" src="../js/vue.js" ></script>
 		<script type="text/javascript" src="index.js" ></script>

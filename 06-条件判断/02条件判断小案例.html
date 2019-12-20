@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id='app'>
+        <span v-if="isUsernameLogin">
+            <label for="username">账号登录：</label>
+            <input type="text" placeholder="请输入登录账号" name="" id="username" />
+        </span>
+        <span v-else>
+            <label for="useremail">邮箱登录：</label>
+            <input type="text" placeholder="请输入邮箱账号" name="" id="useremail" />
+        </span>   
+
+            <button @click="changeLoginType()">切换类型</button>
+
+    </div>
+
+
+    <script src="../js/vue.js"></script>
+    <script>
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: '你好啊！！！',
+                isUsernameLogin: true
+            },
+            methods: {
+                changeLoginType(){
+                    this.isUsernameLogin = !this.isUsernameLogin
+                }
+            }
+        })
+    </script>
+</body>
+</html>
