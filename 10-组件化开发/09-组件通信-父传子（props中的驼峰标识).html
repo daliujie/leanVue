@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id='app1'>
+        <h2>我是父组件</h2>
+        <h2>我给子组件说：{{message}}</h2>
+        <!-- 通过props给子组件传值的时候，如果使用驼峰传，得用下划线标识大写字母 -->
+        <cpn1 :parnet-message="message"></cpn1>
+    </div>
+
+    <template id="cpn1">
+        <div>
+            <h2>我是子组件</h2>
+            <!-- 这里使用的时候必须和props里面定义的一样 -->
+            <h2>父组件给我说：{{parnetMessage}}</h2>
+        </div>
+    </template>
+    
+    <script src='../js/vue.js'></script>
+    <script>
+        const cpn = Vue.component('cpn1',{
+            template: "#cpn1",
+            props:{
+                // 这里取父组件给的下划线标识内容的需要换成驼峰标识
+                parnetMessage:{
+                    type: String,
+                    default: "你好！！！",
+                    require: true
+                }
+            }
+        })
+
+        const app = new Vue({
+            el: '#app1',
+            data: {
+                message: 'Vue.js   你好！'
+            }
+        });
+    </script>
+</body>
+</html>

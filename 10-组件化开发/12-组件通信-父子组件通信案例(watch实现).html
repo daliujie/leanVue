@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        一个关于父子组件之间通信的小案例
+            简述：由父组件给子组件传值，然后子组件修改值的时候同步修改父组件中的值
+     -->
+    <div id='app1'>
+        <h2>父组件：num1={{pnum1}}   num2={{pnum2}}</h2>
+
+        <!-- 
+            1、使用子组件
+            2、将值传递给子组件
+            3、监听子组件发射出来的自定义方法，并处理
+         -->
+        <cpn @number1change="number1change" @number2change="number2change" :num1="pnum1" :num2="pnum2" />
+    </div>
+    
+    <template id="cpn1">
+        <div>
+            <h2>子组件data{{number1}}</h2>
+            <h2>子组件props{{num1}}</h2>
+            <!-- 可以直接使用v-model与数据进行双向绑定 -->
+            <input type="text" v-model="number1" />
+
+            <h2>子组件data{{number2}}</h2>
+            <h2>子组件props{{num2}}</h2>
+            <input type="text" v-model="number2" />
+        </div>
+    </template>
+
+    <script src='../js/vue.js'></script>
+    <script>
+        const cpn = {
+            template: "#cpn1",
+            props:{//监听属性值，这里使用了对象写法
+                num1:{
+                    type: Number,//设置属性值的类型
+                    default: 0//设置属性值的默认值
+                },
+                num2: {
+                    type: Number,
+                    default: 0
+                }
+            },
+            data(){
+                return {
+                    number1: this.num1,//将属性值单独保存，便于和父组件信息同步
+                    number2: this.num2
+                }
+            },
+            watch: {//监听器，使用观察者模式实现，当数据改变的时候就会调用
+                number1() {
+                    this.number2 = 100 * this.number1
+                    this.$emit('number1change',this.number1)
+                },
+                number2() {
+                    this.number1 = this.number2 / 100
+                    this.$emit('number2change',this.number2)
+                }
+            }
+        } 
+
+        const app = new Vue({
+            el: '#app1',
+            data: {
+                message: 'Vue.js   你好！',
+                pnum1: 100,
+                pnum2: 200
+            },
+            methods:{
+                number1change(value){
+                    value = Number(value)//格式化传入的值
+                    this.pnum1 = value//同步修改当前的属性值
+                },
+                number2change(value){
+                    value = Number(value)
+                    this.pnum2 = value;
+                }
+            },
+            components: {
+                cpn
+            }
+        });
+    </script>
+    
+</body>
+</html>

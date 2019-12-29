@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <!-- 
+        两个属性都很少用到，因为会加深组件之间的耦合度
+        $parent 获取自己的上一级组件
+        $root 获取根组件 也就是App
+     -->
+
+    <div id='app1'>
+
+        <cpn1></cpn1>
+    </div>
+    <template id="cpn1">
+        <div>
+            <h2>我是子组件</h2>
+            <button @click="childrenClick">子组件按钮</button>
+            <cpn2></cpn2>
+        </div>
+    </template>
+    <template id="cpn2">
+        <div>
+            <h2>我是孙组件</h2>
+            <button @click="sonClick">孙组件按钮</button>
+        </div>
+    </template>
+    
+    <script src='../js/vue.js'></script>
+    <script>
+        const app = new Vue({
+            el: '#app1',
+            data: {
+                message: '我是App  你好！'
+            },
+            components: {
+                cpn1: {
+                    template: "#cpn1",
+                    data(){
+                        return {
+                            message: "我是子组件，你好"
+                        }
+                    },
+                    methods: {
+                        childrenClick(){
+                            //此处获取到的是父组件，类型是Vue
+                            console.log(this.$parent)
+                            console.log(this.$parent.message)
+                            
+                            //此处可以直接取到根组件，也就是App
+                            console.log(this.$root)
+                            console.log(this.$root.message)
+                        }
+                    },
+                    components: {
+                        cpn2: {
+                            template: "#cpn2",
+                            methods:{
+                                sonClick(){
+                                    //此处获取到的是父组件，类型是VueComponent 
+                                    console.log(this.$parent)
+                                    console.log(this.$parent.message)
+
+                                    //此处可以直接取到根组件，也就是App
+                                    console.log(this.$root)
+                                    console.log(this.$root.message)
+
+                                } 
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

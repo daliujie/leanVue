@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id='app1'>
+        <h2>我是父组件：你点击了{{activeItem.name}}</h2>
+
+        <!-- 
+            1、使用子组件
+            2、监听子组件发射出来的cpnclick（自定义）方法
+                item-click 子组件发射出来的自定义事件，这里不能驼峰
+                cpnClick 自己的处理方法
+        -->
+        <cpn1 @item-click="cpnClick"></cpn1>
+    </div>
+
+    <template id="cpn1">
+        <div>
+            <h2>我是子组件</h2>
+            <!-- 监听每一项的点击事件 -->
+            <button v-for="item in books" @click="btnClick(item)">{{item}}</button>
+        </div>
+    </template>
+
+    
+    <script src='../js/vue.js'></script>
+    <script>
+        const cpn1 = {
+            template: "#cpn1",
+            data() {
+                return {
+                    books:[
+                        {name: "大数据1001",id: 1001},
+                        {name: "大数据1002",id: 1002},
+                        {name: "大数据1003",id: 1003},
+                        {name: "大数据1004",id: 1004},
+                        {name: "大数据1005",id: 1005}
+                    ]
+                }
+            },
+            methods: {
+                btnClick(item){
+                    // 发射一个自定义事件，让父组件进行处理
+                    this.$emit('item-click',item)//和  this.$emit('item-click')  一样，item默认传参，这里也不能驼峰
+                }
+            }
+        }
+
+        const app = new Vue({
+            el: '#app1',
+            data: {
+                message: 'Vue.js   你好！',
+                activeItem: ""
+            },
+            methods: {
+                cpnClick(item){
+                    console.log(item)
+                    this.activeItem = item
+                }
+            },
+            components: {
+                cpn1
+            }
+        });
+    </script>
+
+</body>
+</html>
