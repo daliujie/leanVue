@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id='app1'>
+        <!-- 此处使用的isShow 是App的，不是子组件的 -->
+        <cpn v-show="isShow">
+            <button slot="name1">aaaaaaaaaaaa</button>
+
+        </cpn>
+
+        <!-- 此处使用的也是app的，不是子组件的 -->
+        <cpn>
+            <button slot="name1" v-show="isShow">bbbbbbb</button>
+        </cpn>
+
+    </div>
+    
+
+    
+    <template id="cpn1">
+        <!-- 此处使用的是子组件cpn里面的isShow -->
+        <div>
+            <h2 v-show="isShow">我是子组件标题</h2>
+            <h2>我是子组件标题</h2>
+            <!-- 此处的isShow不起作用 -->
+            <slot name="name1" v-show="isShow"></slot>
+        </div>
+    </template>
+
+    <script src='../js/vue.js'></script>
+    <script>
+        const app = new Vue({
+            el: '#app1',
+            data: {
+                message: 'Vue.js   你好！',
+                isShow: true
+            },
+            components: {
+                cpn: {
+                    template: "#cpn1",
+                    data(){
+                        return {
+                            isShow: false
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

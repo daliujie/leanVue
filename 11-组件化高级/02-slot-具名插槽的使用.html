@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id='app1'>
+        <cpn1>
+            <!--
+                使用插槽
+                    如果需要替换指定插槽（具名插槽），name就需要带上slot属性
+                    如果是替换听一个具名插槽，那么会合并（注意不是覆盖）
+              -->
+            <button slot="first">替换的第一个按钮</button>
+            <p slot="second">替换的第2个按钮</p>
+            <span slot="first">替换的第3个按钮</span>
+            <span >替换4的第个按钮</span>
+
+        </cpn1>
+
+    </div>
+    <template id="cpn1">
+        <div>
+            <h2>我是子组件1</h2>
+            <!-- 定义具名插槽 
+                    在使用的时候需要加上slot属性，属性值就是这里的name
+                    有名字的插槽只能被指定了插槽名字的元素替换
+            -->
+            <slot name="first"><button >我是默认按钮1</button></slot>
+            <slot name="second"><button>我是默认按钮2</button></slot>
+            <slot name="third"><button>我是默认按钮3</button></slot>
+            <slot ><button>我是默认按钮4</button></slot>
+
+        </div>
+    </template>
+    
+    <script src='../js/vue.js'></script>
+    <script>
+        const cpn1 = {
+            template: "#cpn1"
+        }
+        const app = new Vue({
+            el: '#app1',
+            data: {
+                message: 'Vue.js   你好！'
+            },
+            components: {
+                cpn1
+            }
+        });
+    </script>
+</body>
+</html>

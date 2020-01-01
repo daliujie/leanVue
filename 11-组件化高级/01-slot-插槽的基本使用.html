@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- 这是插槽最基本的使用 -->
+    <!-- 组件插槽的目的是让我们编写的组件更有扩展性 -->
+</head>
+<body>
+
+    <div id='app1'>
+        <cpn1></cpn1>
+        <cpn1>
+            <!-- 
+                直接使用这个元素来代替slot
+                    如果有多个元素，会将里面所有的东西替换到slot中
+                    如果有多个slot，那么就++++++++++++++++++++++++++++++++++++++++++++++替换多次
+            -->
+            <button>这是按钮1</button>
+            <button>这是按钮2</button>
+        </cpn1>
+
+    </div>
+    <template id="cpn1">
+        <div>
+            <h2>我是组件1</h2>
+            <p>我是组件1，哈哈哈</p>
+            <!-- 这是预留位置，在使用的时候在标签纸传入就可以了 -->
+            <slot></slot>
+            <!-- 这是给插槽一个默认值 -->
+            <slot><button>这是默认按钮</button></slot>
+        </div>
+    </template>
+
+    <script src='../js/vue.js'></script>
+    <script>
+        const cpn1 = {
+            template: "#cpn1"
+        }
+
+        const app = new Vue({
+            el: '#app1',
+            data: {
+                message: 'Vue.js   你好！'
+            },
+            components: {
+                cpn1
+            }
+        });
+    </script>
+    
+</body>
+</html>

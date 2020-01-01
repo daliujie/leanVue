@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div id='app1'>
+        <!-- 使用默认展现方式 -->
+        <cpn></cpn>
+
+        <!-- 自定义展现方式 -->
+        <cpn>
+            <!-- 
+                在 vue2.5之前必须得使用template标签，之后的可以不使用
+                    slot-scope是获取需要替换的插槽，可以通过这个属性来获取定义插槽时绑定的属性数据
+             -->
+            <template slot-scope="slot1">
+                <div v-for="item in slot1.data">{{item}}</div>
+            </template>
+        </cpn>
+
+        <!-- 自定义展现方式2 -->
+        <cpn>
+            <template slot-scope="slot2">
+                <span >{{slot2.data.join("     ------->     ")}}</span>
+            </template>
+        </cpn>
+    </div>
+
+    <template id="cpn">
+        <div>
+            <!-- 
+                在这里定义一个插槽，让外部使用的时候可以自定义里面的展现方式，并且给一个默认的展示样式
+                    ：data将插槽于数据相绑定，使得外部使用的时候可以获得该数据进行处理
+             -->
+            <slot :data="pLanguages">
+                <ul>
+                    <li v-for="item in pLanguages">{{item}}</li>
+                </ul>
+            </slot>
+        </div>
+    </template>
+    
+    <script src='../js/vue.js'></script>
+    <script>
+        const app = new Vue({
+            el: '#app1',
+            data: {
+                message: 'Vue.js   你好！'
+            },
+            components: {
+                cpn: {
+                    template: "#cpn",
+                    data(){
+                        return {
+                            pLanguages: ['java','c++','python','go','javascript']
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
