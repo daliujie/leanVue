@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- 父传子可以通过props属性传递数据 -->
+    <div id='app'>
+        <!-- 在这里通过属性绑定需要传递的数据,key和option里面的props里面的东西一样-->
+        <!-- <cpn :cmessage="'这是父组件传值'" :cbooks="books"></cpn> -->
+        <cpn :cbooks="books"></cpn>
+
+    </div>
+
+    <template id="cpn">
+        <div>
+            <h2>所有书籍</h2>
+            <ul>
+                <li v-for="item in cbooks">{{cmessage }}   {{item}}</li>
+            </ul>
+        </div>
+    </template>
+    <script>
+
+        const cpn = {
+            template: "#cpn",
+            //可以有多种写法，这个是数组写法
+            //props: ['cbooks']//在这里定义属性的name,可以直接在组件中使用
+
+            //对象写法  可以限定数据的类型
+            // props: {
+            //     cbooks: Array,  
+            //     cmessage: String ,
+            // }
+
+            // 对象的更强写法  可以限定数据的类型和默认值  require限定该属性为必传属性，不传会报错
+            props: {
+                cbooks: {
+                    type: Array,
+                  //  default: []//在2.5.x版本之前不会报错
+                  default(){ //新版本建议使用这种方式返回数组和对象
+                      return []
+                  }
+
+                },
+                cmessage: {
+                    type: String,
+                    default: "这是默认值",
+                    require: false
+                }
+            }
+        }
+
+        const app = new Vue({
+            el: '#app',
+            data: {
+                message: '你好啊！！！',
+                books: ['大数据','java','c++','射雕']//定义数据传递给子组件
+            },
+            methods: {
+    
+            },
+            components: {
+                cpn
+            }
+        })
+    </script>
+    
+</body>
+</html>
